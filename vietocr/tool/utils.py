@@ -37,7 +37,7 @@ def download_config(id):
     config = yaml.safe_load(r.text)
     return config
 
-def compute_accuracy(ground_truth, predictions, mode='full_sequence'):
+def compute_accuracy(ground_truth, predictions, img_files=None, mode='full_sequence'):
     """
     Computes accuracy
     :param ground_truth:
@@ -75,12 +75,18 @@ def compute_accuracy(ground_truth, predictions, mode='full_sequence'):
                         accuracy.append(0)
         avg_accuracy = np.mean(np.array(accuracy).astype(np.float32), axis=0)
     elif mode == 'full_sequence':
+        correct_count = 0
+        for index, label in enumerate(ground_truth):
+            prediction = predictions[index]
+            if prediction == label:
+                correct_count += 1
+            else: #
+                with open('word_errors.txt', 'a') as f: #
+                    f.write(f'label: {label} - prediction: {prediction}\n') #
+                # with open("file_errors.txt", 'a') as f:
+                #     f.write(img_files[index] + '\n')
+                    
         try:
-            correct_count = 0
-            for index, label in enumerate(ground_truth):
-                prediction = predictions[index]
-                if prediction == label:
-                    correct_count += 1
             avg_accuracy = correct_count / len(ground_truth)
         except ZeroDivisionError:
             if not predictions:

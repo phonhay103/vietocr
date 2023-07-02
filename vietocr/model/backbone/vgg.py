@@ -10,9 +10,9 @@ class Vgg(nn.Module):
         super(Vgg, self).__init__()
 
         if name == 'vgg11_bn':
-            cnn = models.vgg11_bn(pretrained=pretrained)
+            cnn = models.vgg11_bn(weights='DEFAULT')
         elif name == 'vgg19_bn':
-            cnn = models.vgg19_bn(pretrained=pretrained)
+            cnn = models.vgg19_bn(weights='DEFAULT')
 
         pool_idx = 0
         

@@ -112,7 +112,7 @@ def translate(img, model, max_seq_length=128, sos_token=1, eos_token=2):
         
         char_probs = np.asarray(char_probs).T
         char_probs = np.multiply(char_probs, translated_sentence>3)
-        char_probs = np.sum(char_probs, axis=-1)/(char_probs>0).sum(-1)
+        char_probs = np.sum(char_probs, axis=-1) / (np.maximum((char_probs > 0).sum(-1), 1e-8))
     
     return translated_sentence, char_probs
 

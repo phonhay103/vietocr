@@ -1,6 +1,6 @@
 import sys
 import os
-import lmdb # install lmdb by "pip install lmdb"
+import lmdb
 import cv2
 import numpy as np
 from tqdm import tqdm
@@ -38,7 +38,6 @@ def createDataset(outputPath, root_dir, annotation_path):
         checkValid    : if true, check the validity of every image
     """
 
-    annotation_path = os.path.join(root_dir, annotation_path)
     with open(annotation_path, 'r') as ann_file:
         lines = ann_file.readlines()
         annotations = [l.strip().split('\t') for l in lines]
@@ -55,6 +54,7 @@ def createDataset(outputPath, root_dir, annotation_path):
         imagePath = os.path.join(root_dir, imageFile)
 
         if not os.path.exists(imagePath):
+            print("image not exist:", imagePath)
             error += 1
             continue
         
@@ -63,6 +63,7 @@ def createDataset(outputPath, root_dir, annotation_path):
         isvalid, imgH, imgW = checkImageIsValid(imageBin)
 
         if not isvalid:
+            print("image invalid:", imagePath)
             error += 1
             continue
 
@@ -82,12 +83,11 @@ def createDataset(outputPath, root_dir, annotation_path):
             writeCache(env, cache)
             cache = {}
 
-    nSamples = cnt-1
-    cache['num-samples'] = str(nSamples).encode()
+    cache['num-samples'] = str(cnt-1).encode()
     writeCache(env, cache)
 
     if error > 0:
         print('Remove {} invalid images'.format(error))
-    print('Created dataset with %d samples' % nSamples)
+    print('Created dataset with %d samples' % cnt)
     sys.stdout.flush()
 

@@ -1,0 +1,10 @@
+prefetch_generator
+lmdb
+einops
+wandb
+gdown
+hydra-core
+tqdm
+python-dotenv
+pandas
+numpy
