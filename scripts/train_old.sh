@@ -10,5 +10,4 @@ python train.py \
 ++dataset.valid_lmdb="datasets/lmdb/valid" \
 ++dataset.test_lmdb="datasets/lmdb/test" \
 ++trainer.export="weights/train_old.pth" \
-++trainer.log="logs/train_old.log" \
 ++dataloader.num_workers=20

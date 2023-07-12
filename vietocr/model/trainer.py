@@ -4,7 +4,7 @@ from vietocr.tool.translate import build_model
 from vietocr.tool.translate import translate, batch_translate_beam_search
 from vietocr.tool.utils import download_weights
 from vietocr.tool.logger import Logger
-# from vietocr.loader.aug import ImgAugTransform
+from vietocr.loader.aug import ImgAugTransform
 
 import torch
 from vietocr.loader.dataloader import OCRDataset, ClusterRandomSampler, Collator
@@ -20,8 +20,8 @@ import time
 import wandb
 
 class Trainer():
-    # def __init__(self, config, pretrained=True, augmentor=ImgAugTransform()):
-    def __init__(self, config, pretrained=False):
+    def __init__(self, config, pretrained=False, augmentor=ImgAugTransform()):
+    # def __init__(self, config, pretrained=False):
         self.config = config
         self.model, self.vocab = build_model(config)
 
@@ -79,8 +79,8 @@ class Trainer():
         
         transforms = None
         if self.image_aug:
-            # transforms =  augmentor
-            transforms = None
+            transforms =  augmentor
+            # transforms = None
 
         self.train_gen = self.data_gen(self.train_lmdb, self.data_root, self.train_annotation, 
                                        self.masked_language_model, transform=transforms)
