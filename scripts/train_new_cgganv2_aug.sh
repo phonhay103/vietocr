@@ -1,6 +1,6 @@
 python train.py \
 ++project="vietocr_new" \
-++name="Train new + CGGANv2 | augment | 84 words - 2822 images" \
+++name="Train new + CGGANv2 | augment | 47 words - 1598 images" \
 ++gpu_id=1 \
 ++dataset.data_root="/mnt/disk3/CGGANv2" \
 ++dataset.train_annotation="datasets/labels/trainV2_CGGANv2.2.txt" \
