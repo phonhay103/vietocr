@@ -1,7 +1,7 @@
 python train.py \
 ++project="vietocr_new" \
-++name="Train new + CGGANv2 | 47 words - 1598 images" \
-++gpu_id=3 \
+++name="Train new | CGGAN 84 words SSIM Q2" \
+++gpu_id=2 \
 ++dataset.data_root="/mnt/disk3/CGGANv2" \
 ++dataset.train_annotation="datasets/labels/trainV2_CGGANv2.2.txt" \
 ++dataset.valid_annotation="datasets/labels/validV2.txt" \
@@ -10,5 +10,6 @@ python train.py \
 ++dataset.valid_lmdb="datasets/lmdb/validV2" \
 ++dataset.test_lmdb="datasets/lmdb/testV2" \
 ++trainer.export="weights/train_new.pth" \
-++dataloader.num_workers=20 \
-++aug.image_aug=false
+++dataloader.num_workers=10 \
+++aug.image_aug=false \
+++force=false

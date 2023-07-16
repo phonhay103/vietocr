@@ -1,5 +1,4 @@
 import os
-import gdown
 import yaml
 import numpy as np
 import uuid
@@ -80,9 +79,9 @@ def compute_accuracy(ground_truth, predictions, img_files=None, mode='full_seque
             prediction = predictions[index]
             if prediction == label:
                 correct_count += 1
-            else: #
-                with open('word_errors.txt', 'a') as f: #
-                    f.write(f'label: {label} - prediction: {prediction}\n') #
+            # else:
+                # with open('word_errors.txt', 'a') as f:
+                #     f.write(f'label: {label} - prediction: {prediction}\n')
                 # with open("file_errors.txt", 'a') as f:
                 #     f.write(img_files[index] + '\n')
                     
