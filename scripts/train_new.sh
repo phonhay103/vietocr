@@ -1,7 +1,7 @@
 python train.py \
 ++project="vietocr_new" \
 ++name="Train new" \
-++gpu_id=1 \
+++gpu_id=3 \
 ++dataset.data_root="/mnt/disk3/CGGANv2" \
 ++dataset.train_annotation="datasets/labels/trainV2.txt" \
 ++dataset.valid_annotation="datasets/labels/validV2.txt" \
@@ -11,4 +11,5 @@ python train.py \
 ++dataset.test_lmdb="datasets/lmdb/testV2" \
 ++trainer.export="weights/train_new.pth" \
 ++dataloader.num_workers=20 \
-++aug.image_aug=false
+++aug.image_aug=false \
+++force=false

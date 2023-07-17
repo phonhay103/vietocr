@@ -1,7 +1,7 @@
 python train.py \
 ++project="vietocr_new" \
 ++name="Train new | CGGAN 84 words SSIM Q2" \
-++gpu_id=2 \
+++gpu_id=3 \
 ++dataset.data_root="/mnt/disk3/CGGANv2" \
 ++dataset.train_annotation="datasets/labels/trainV2_CGGANv2.2.txt" \
 ++dataset.valid_annotation="datasets/labels/validV2.txt" \

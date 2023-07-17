@@ -20,7 +20,12 @@ def create_df(err_file_path):
     return df
 
 old_df = create_df('word_errors_new.txt')
-old_df.to_csv('word_errors_new.csv')
+# old_df.to_csv('word_errors_new.csv')
 
-new_df = create_df('word_errors.txt')
-new_df.to_csv('word_errors.csv')
+# new_df = create_df('word_errors.txt')
+# new_df.to_csv('word_errors.csv')
+
+print(len(set(old_df[old_df.Count >= 5].gt_word.values)))
+print(len(set(old_df[old_df.Count >= 4].gt_word.values)))
+print(len(set(old_df[old_df.Count >= 3].gt_word.values)))
+print(len(set(old_df[old_df.Count >= 2].gt_word.values)))
