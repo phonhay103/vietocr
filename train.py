@@ -11,11 +11,11 @@ def main(config):
     config = OmegaConf.to_container(config, resolve=True)
     if config['force']:
         shutil.rmtree(config['dataset']['train_lmdb'])
-    for i in range(9):
-        wandb.init(project=config['project'], name=config['name'])
-        trainer = Trainer(config)
-        trainer.train()
-        wandb.finish()
+
+    wandb.init(project=config['project'], name=config['name'])
+    trainer = Trainer(config)
+    trainer.train()
+    wandb.finish()
 
 if __name__ == '__main__':
     main()

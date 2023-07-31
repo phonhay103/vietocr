@@ -1,5 +1,5 @@
 project: vietocr_new
-name: Train OCR
+name: Train
 
 gpu_id: 1
 device: cuda:${gpu_id}
@@ -29,12 +29,12 @@ trainer:
   test_every: 500
   iters: 10000
   # where to save our model for prediction
-  export: weights/model.pth
-  checkpoint: ./checkpoint/checkpoint.pth
+  export: weights/train_model.pth
+  checkpoint: ./checkpoint/checkpoint_model.pth
   log: ./train.log
   # null to disable compuate accuracy, or change to number of sample to enable validiation while training
-  metrics: 49228
-  test_metrics: 28918
+  metrics: 999999
+  test_metrics: 999999
   pretrained: false
 
 dataset:    

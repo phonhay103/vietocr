@@ -18,6 +18,7 @@ import os
 import matplotlib.pyplot as plt
 import time
 import wandb
+from torchmetrics.functional.text import char_error_rate
 
 class Trainer():
     def __init__(self, config, pretrained=False, augmentor=ImgAugTransform()):
@@ -139,8 +140,9 @@ class Trainer():
             if self.iter % self.valid_every == 0:
                 val_loss = self.validate()
                 acc_full_seq, acc_per_char = self.precision(self.metrics)
+                val_cer = self.cer(self.metrics)
 
-                info = 'iter: {:06d} - valid loss: {:.3f} - acc full seq: {:.4f} - acc per char: {:.4f}'.format(self.iter, val_loss, acc_full_seq, acc_per_char)
+                info = 'iter: {:06d} - valid loss: {:.3f} - acc full seq: {:.4f} - acc per char: {:.4f} - CER {:.4f}'.format(self.iter, val_loss, acc_full_seq, acc_per_char, val_cer)
                 print(info)
                 self.logger.log(info)
                 
@@ -148,6 +150,7 @@ class Trainer():
                     "val_loss": val_loss,
                     "val_acc": acc_full_seq, 
                     "val_acc_per_char": acc_per_char,
+                    "cer": val_cer,
                 })
 
                 if acc_full_seq > best_acc:
@@ -257,6 +260,11 @@ class Trainer():
         acc_per_char = compute_accuracy(actual_sents, pred_sents, mode='per_char')
     
         return acc_full_seq, acc_per_char
+    
+    def cer(self, sample=None):
+        pred_sents, actual_sents, _, _ = self.predict(sample=sample)
+        return char_error_rate(pred_sents, actual_sents)
+
     
     def visualize_prediction(self, sample=16, errorcase=False, fontname='serif', fontsize=16):
         

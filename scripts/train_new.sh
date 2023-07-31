@@ -1,11 +1,11 @@
 python train.py \
-++project="vietocr_new" \
-++name="Train new" \
-++gpu_id=3 \
-++dataset.data_root="/mnt/disk3/CGGANv2" \
-++dataset.train_annotation="datasets/labels/trainV2.txt" \
-++dataset.valid_annotation="datasets/labels/validV2.txt" \
-++dataset.test_annotation="datasets/labels/testV2.txt" \
+++project="vietocr_naver" \
+++name="Train original" \
+++gpu_id=0 \
+++dataset.data_root="/mnt/disk3/CG-GAN/training_data/new_train" \
+++dataset.train_annotation="/mnt/disk3/CG-GAN/VN_train_2.txt" \
+++dataset.valid_annotation="/mnt/disk3/CG-GAN/VN_val_2.txt" \
+++dataset.test_annotation="/mnt/disk3/CG-GAN/VN_val_2.txt" \
 ++dataset.train_lmdb="datasets/lmdb/trainV2" \
 ++dataset.valid_lmdb="datasets/lmdb/validV2" \
 ++dataset.test_lmdb="datasets/lmdb/testV2" \

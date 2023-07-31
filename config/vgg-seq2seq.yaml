@@ -30,8 +30,8 @@ trainer:
   checkpoint: ./checkpoint/checkpoint_model.pth
   log: ./train.log
   # null to disable compuate accuracy, or change to number of sample to enable validiation while training
-  metrics: 49228
-  test_metrics: 28918
+  metrics: 999999
+  test_metrics: 999999
   pretrained: false
 
 dataset:    
